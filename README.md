@@ -1,5 +1,7 @@
 # spoken-english-to-written-english-conversion
 spoken english to written english conversion 
+This is the extension to the below git hub implementation  
+https://github.com/vishaldhiman28/Spoken-To-Written-English/blob/master/spoken2written/sp2wr.py  As an entension, the current repository has the demonistration for extending to any future rule ( phrase deconstruction has been implemented here)
 
 The following things will be taken care:
 
