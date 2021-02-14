@@ -5,7 +5,8 @@ https://github.com/vishaldhiman28/Spoken-To-Written-English/blob/master/spoken2w
 
 The following things will be taken care:
 
-"two dollars" will be converted to $2. Abbreviations spoken as "C M" or "Triple A" will be written as "CM" and "AAA" respectively. 
+1) "two dollars" will be converted to $2. Abbreviations spoken as "C M" or "Triple A" will be written as "CM" and "AAA" respectively. 
+2) Deconstruction of the phrases "won't" to "will not" etc.,
 
 Example of the input and output to the model 
 
