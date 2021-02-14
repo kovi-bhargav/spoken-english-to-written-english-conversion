@@ -61,6 +61,14 @@ def decontracted(phrase):
     phrase = re.sub(r"\'m", " am", phrase)
     return phrase
 
+def preprocess_text(sentance):
+    sent = decontracted(sentance)
+    sent = sent.replace('\\r', ' ')
+    sent = sent.replace('\\n', ' ')
+    sent = sent.replace('\\"', ' ')
+    return sent 
+
+
 #checking if word has comma at front or at last or at both  if true then return front,word and last 
 def check_front_last(word):
     front=""
@@ -101,8 +109,8 @@ class SpokenToWritten:
     #main conversion function of spoken to written english 
     def Convert(self):
     
-        #Here we can add any rule which need to be applied on the entire sentence 
-        self.paragraph = decontracted(self.paragraph) 
+        #Here we can add any rule which need to be applied on the entire sentence in the preprocess_text function 
+        self.paragraph = preprocess_text(self.paragraph) 
         
         #splitting paragraph into individual words
         words_of_para=self.paragraph.split()
