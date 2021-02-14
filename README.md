@@ -1,7 +1,9 @@
 # spoken-english-to-written-english-conversion
 spoken english to written english conversion 
-This is the extension to the git hub implementatio 
-https://github.com/vishaldhiman28/Spoken-To-Written-English/blob/master/spoken2written/sp2wr.py  As an entension, the current repository has the demonistration for extending to any future rule ( phrase deconstruction has been implemented here)
+
+The following things will be taken care:
+
+"two dollars" will be converted to $2. Abbreviations spoken as "C M" or "Triple A" will be written as "CM" and "AAA" respectively. 
 
 Example of the input and output to the model 
 
