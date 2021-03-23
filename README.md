@@ -11,11 +11,9 @@ https://github.com/vishaldhiman28/Spoken-To-Written-English/blob/master/spoken2w
 Example of the input and output to the model 
   
 
-[IN]:Enter Your paragraph of spoken english:
+Enter Your paragraph of spoken english:
 
 "Hi! This is Hero I acted in 7 movies and i start my day at 5 A M. my remuneration is hundred dollars per day .My contact number contains double 5, quadruple 8, single 9 and triple 4 and I won't             take alcohol. "
-
-[OUT]:The input Spoken English Paragraph: 
 
 The input Spoken English Paragraph: 
 
