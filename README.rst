@@ -1,4 +1,8 @@
-# spoken-english-to-written-english-conversion
+# 
+=================
+Spoken To Written
+=================
+spoken-english-to-written-english-conversion
 
 This package facilitates the conversion of raw spoken english text to written english text. This package fulfills few cases. However, lot many cases still need to be included.
 
