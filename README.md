@@ -20,7 +20,7 @@ You can install the module using Python Package Index using the below command.
 # Usage :
 
 ```
->>python3
+ >>python3
  >>from spoken2written import sp2wr
  >>sp2wr.sp_to_wr()
  >>
