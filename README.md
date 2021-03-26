@@ -13,11 +13,13 @@ This package facilitates the conversion of raw spoken english text to written en
 Please ensure that you have updated pip3 to the latest version before installing spoken2written.
 
 You can install the module using Python Package Index using the below command.
-
+```
 >>python3 setup.py install
+```
 
 # Usage :
 
+```
 >>python3
  >>from spoken2written import sp2wr
  >>sp2wr.sp_to_wr()
@@ -28,6 +30,7 @@ You can install the module using Python Package Index using the below command.
  
 Input:  The w h o wrote letter to P M O , to alert about the new vaccinne '     Triple H ' which isn't working as expected .
 Output:  The World Health Organisation wrote letter to Prime Minister's Office , to alert about the new vaccinne ' Triple H ' which is not working as expected .
+```
   
 # Future Implemetations can be :
 
