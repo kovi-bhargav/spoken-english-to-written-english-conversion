@@ -1,50 +1,6 @@
-#defining rules
-def get_rules():
-    rules = {"Numbers":{
-                        "zero": 0,
-                        "one" : 1,
-                        "two": 2,
-                        "three": 3,
-                        "four": 4,
-                        "five": 5,
-                        "six": 6,
-                        "seven": 7,
-                        "eight": 8,
-                        "nine": 9,
-                        "ten": 10,
-                        "twenty": 20,
-                        "thirty": 30,
-                        "forty": 40,
-                        "fifty": 50,
-                        "sixty": 60,
-                        "seventy": 70,
-                        "eighty": 80,
-                        "ninety": 90,
-                        "hundred": 100
-                        },
-            "Tuples": {
-                         "single":1,
-                         "double":2,
-                         "triple":3,
-                         "quadruple":4,
-                         "quintuple":5,
-                         "sextuple":6,
-                         "septuple":7,
-                         "octuple":8,
-                         "nonuple":9,
-                         "decuple":10
-                      },
-            "General": {
-                          "C M": "CM",
-                          "P M": "PM",
-                          "D M": "DM",
-                          "A M": "AM"
-                       }
-            }
-    return rules 
-    
-# https://stackoverflow.com/a/47091490/4084039
+import numpy as np
 import re
+
 def decontracted(phrase):
     # specific
     phrase = re.sub(r"won't", "will not", phrase)
@@ -68,93 +24,104 @@ def preprocess_text(sentance):
     sent = sent.replace('\\"', ' ')
     return sent 
 
+class spoken_to_word:
+    currency = {'dollar': '$', 'pound': '£', 'rupee': '₹','rupees': '₹','dollars': '$'}
+    abbrevations = { 'PMO' : "Prime Minister's Office" ,
+                    'WHO' : "World Health Organisation"}
+    tuples =  {
+                         "single": 1,
+                         "double": 2,
+                         "triple": 3,
+                         "quadruple":4,
+                         "quintuple":5,
+                         "sextuple":6,
+                         "septuple":7,
+                         "octuple":8,
+                         "nonuple":9,
+                         "decuple":10
+                      }      
+    general =      {
+                          "C M": "CM",
+                          "P M O" : "PMO",
+                          "P M": "PM",
+                          "D M": "DM",
+                          "A M": "AM",
+                          "W H O": "WHO"
+                       }                        
 
-#checking if word has comma at front or at last or at both  if true then return front,word and last 
-def check_front_last(word):
-    front=""
-    last=""
-    if(len(word)>1):
-        if word[-1]==',' or word[-1]=='.':
-            last=word[-1]
-            word=word[:-1]
-        if word[0]==',' or word[0]=='.':
-            front=word[0]
-            word=word[1:]
-    return front,word,last
-
-
-#class for conversion
-class SpokenToWritten:
-
-    def __init__(self):
-
-        self.rules=get_rules()
-        self.paragraph=""
-        self.ouptut_para=""
-
-    #getting user input
-    def get_user_input(self):
-
-        self.paragraph=input("\n[IN]:Enter Your paragraph of spoken english:\n\t")
-
-        if not self.paragraph:
-            raise ValueError("[Error]: You entered nothing.")
-
-    #getting  user output
-    def show_output(self):
-        print("\n[OUT]:The input Spoken English Paragraph: \n\n \" "+ self.paragraph+"\"")
-        print("\nConverted Written English Paragraph: \n\n \"" +self.ouptut_para+"\"")
-
-    
-    #main conversion function of spoken to written english 
-    def Convert(self):
-    
-        #Here we can add any rule which need to be applied on the entire sentence in the preprocess_text function 
-        self.paragraph = preprocess_text(self.paragraph) 
+    def __init__(self , text):
+      self.text = text  
         
-        #splitting paragraph into individual words
-        words_of_para=self.paragraph.split()
+    def expansion_of_words(self, sent):
+      # Triple A => AAA
+      text = sent.split()
+      new_text = [ ]
+      i = 0
+      while i < len(text):
+        if self.tuples.get(text[i]) and i+1 < len(text) and len(text[i+1]) == 1 :
+          word = text[i+1]*self.tuples.get(text[i])
+          new_text.append(word)
+          i = i+1 
+        else:
+          new_text.append(text[i])
+        i = i+1
+      return ' '.join(new_text)
+    
+    def currency_conversion(self, sent):
+      text = sent.split()
+      new_text = [ ]
+      for word in text:
+        if word.lower() in list(self.currency.keys()):
+          new_text.append(self.currency.get(word.lower()))
+        else:
+          new_text.append(word)
+      return ' '.join(new_text)
 
-        #accessing defines rules
-        numbers=self.rules['Numbers']
-        tuples=self.rules['Tuples']
-        general=self.rules['General']
-        i=0
-        no_of_words=len(words_of_para)
-        #loop will run for the number of words in paragraph 
-        while i<no_of_words: 
-            
-            front,word,last=check_front_last(words_of_para[i])
-            #Word of paragraph may of form ',dollars.' 
-            if i+1!= no_of_words:
-            #when word is of the form e.g.: two 
-                front_n,next_word,last_n=check_front_last(words_of_para[i+1])
-                if word.lower() in numbers.keys() and (next_word.lower()=='dollars' or next_word.lower()=='dollar'):
-                    self.ouptut_para=self.ouptut_para+" "+front+"$"+str(numbers[word.lower()])+last
-                    i=i+2
+    def general_abbrevations(self, sent):
+        keys_cap = list(self.general.keys())
+        keys_small = []
+        for word in  keys_cap:
+          keys_small.append(word.lower())
+        for i in range(len( keys_cap)):
+          if keys_cap[i] in sent :
+            sent = sent.replace(keys_cap[i],self.general.get(keys_cap[i]))
+          if keys_small[i] in sent :
+            sent = sent.replace(keys_small[i],self.general.get(keys_small[i].upper()))
 
-                elif word.lower() in tuples.keys() and len(next_word)==1:
-                    #when word is of form Triple A
-                    self.ouptut_para=self.ouptut_para+" "+front_n+(next_word*tuples[word.lower()])+last_n
-                    i=i+2
-                elif (word+" "+next_word) in general.keys():
-                    #if word is of form P M or C M
-                    self.ouptut_para=self.ouptut_para+" "+front+word+next_word+last_n
-                    i=i+2
-                else:
-                    self.ouptut_para=self.ouptut_para+" "+words_of_para[i]
-                    i=i+1
-            else:
-                self.ouptut_para=self.ouptut_para+" "+words_of_para[i]
-                i=i+1
+        return sent
+
+    def expandAbbrevations(self,sent):
+      text = sent.split()
+      for i in range(len(text)) :
+        if self.abbrevations.get(text[i]):
+          text[i] = self.abbrevations.get(text[i])
+      return ' '.join(text)
 
 
+    def driver(self):
+        #Here we can add any rule which need to be applied on the entire sentence in the preprocess_text function 
+        sentence = preprocess_text(self.text)
+        sentence = self.currency_conversion(sentence)
+        # sentence = self.check_front_last_part_word(sentence)
+        sentence = self.expansion_of_words(sentence)
+        sentence = self.general_abbrevations(sentence)
+        
+        # output = self.combineAbbrevations(output)
+        sentence = self.expandAbbrevations(sentence)
+
+
+        return sentence
+    
 #main function 
-def convert_sp_to_wr():
-    #creating class object
-    obj_spoken=SpokenToWritten()
-    obj_spoken.get_user_input()
-    obj_spoken.Convert()
+def sp_to_wr():
+    input_text = input("Enter Your paragraph of spoken english:\n\t")
 
+    if not input_text:
+      raise ValueError("[Error]: You entered nothing.")  
+     #creating class object
+    obj_s2w = spoken_to_word(input_text)
 
-    obj_spoken.show_output()
+    output_text = obj_s2w.driver()
+
+    print("Input: ", input_text)
+    print("Output: ", output_text)
