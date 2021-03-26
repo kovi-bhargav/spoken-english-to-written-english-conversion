@@ -1,27 +1,13 @@
 # spoken-english-to-written-english-conversion
-spoken english to written english conversion 
-This is the extension to the below git hub implementation  
-https://github.com/vishaldhiman28/Spoken-To-Written-English/blob/master/spoken2written/sp2wr.py  As an entension, the current repository has the demonistration for extending to any future rule (  'preprocess_text' function can be extended to apply any future rule on the complete sentence, ex : phrase deconstruction and removing the tabs and new line characters has been implemented here)
 
-# The following things will be taken care:
+This package facilitates the conversion of raw spoken english text to written english text. This package fulfills few cases. However, lot many cases still need to be included.
 
-1) "two dollars" will be converted to $2. Abbreviations spoken as "C M" or "Triple A" will be written as "CM" and "AAA" respectively. 
-2) Removing the tabs and new lines and deconstruction of the phrases "won't" to "will not" etc., has been implemented. Similarly any rule can be easily added to 'preprocess_text' function and if we thouroughly test 'preprocess_text' function it will be enough.
-
-Example of the input and output to the model 
-  
-
-Enter Your paragraph of spoken english:
-
-"Hi! This is Hero I acted in 7 movies and i start my day at 5 A M. my remuneration is hundred dollars per day .My contact number contains double 5, quadruple 8, single 9 and triple 4 and I won't             take alcohol. "
-
-The input Spoken English Paragraph: 
-
-"Hi! This is Hero I acted in 7 movies and i start my day at 5 A M. my remuneration is hundred dollars per day .My contact number contains double 5, quadruple 8, single 9 and triple 4 and I won't             take alcohol. "
-
-Converted Written English Paragraph: 
-  
-  Hi! This is Hero I acted in 7 movies and i start my day at 5 A M. my remuneration is $100 per day. My contact number contains 55, 8888, 9 and 444 and I will not take alcohol.
+# Implemented cases:
+1) This package will preprocess the text to decontract any "n't" suffix to "not" and "'re" suffix to "are" and "'s" suffix to "is" etc.,
+2) This package will preprocess the text to remove any extra spaces or tabs or new line characters
+3) This package will convert the words in the form of 'Triple A' to AAA etc.,
+4) This package will replace the currecy names with symbols ( we can extend the currency dictionary )
+5) This package can replace the abbrevations with their corresponding expansions as maintained in the abbrevations dictionary.
   
 # Future Implemetations can be :
 
@@ -30,3 +16,6 @@ Converted Written English Paragraph:
 2) Handling of both American number system and Indian number system e.g. million, lakhs.
 
 3) Handling of Dates e.g. Today's Date is twenty-eight October two thousand twenty as Today's Date is 28-10-2020/2020-10-28.
+
+# Note :
+It is pretty simple to extend this package. We just have to mention the function in the class as a method and call it in the driver. 
