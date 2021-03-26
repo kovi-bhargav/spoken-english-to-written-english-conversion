@@ -16,7 +16,7 @@ setup(
       description='Convert Spoken English given as text to Written English ',
       author='Kovi Bhargav',
       author_email='bhargavchowdaryk26@gmail.com',
-      url='https://github.com/cyberdhiman/Spoken-To-Written-English',
+      url='https://github.com/kovi-bhargav/spoken-english-to-written-english-conversion',
       classifiers = [
      					 'Intended Audience :: Developers',
       					'Programming Language :: Python'
