@@ -39,6 +39,7 @@ Usage :
        >>python3
        >>from spoken2written import sp2wr
        >>sp2wr.sp_to_wr()
+       
        >>Enter Your paragraph of spoken english:
 
        The w h o wrote letter to P M O , to alert about the new vaccinne '     Triple H ' which isn't working as expected . 
