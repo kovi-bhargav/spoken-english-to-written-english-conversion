@@ -41,7 +41,7 @@ Output:  The World Health Organisation wrote letter to Prime Minister's Office ,
 3) Handling of Dates e.g. Today's Date is twenty-eight October two thousand twenty as Today's Date is 28-10-2020/2020-10-28.
 
 # Note :
-It is pretty simple to extend this package. We just have to mention the function in the class as a method and call it in the driver. 
+It is pretty simple to extend this package. We just have to mention the method in the class 'spoken_to_word' and call it in the driver method.
 
 # LICENSE :
 MIT License
